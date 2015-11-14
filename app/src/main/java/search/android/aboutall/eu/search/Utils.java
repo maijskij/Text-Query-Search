@@ -30,5 +30,23 @@ public class Utils {
 
         return result;
     }
+    public static boolean isAlphaBheticString (String s){
+        String pattern= "^[a-z]*$";
+        return s.matches(pattern);
+    }
+
+
+    public static boolean isNumber(String s) {
+
+        String pattern= "^[0-9]*$";
+        return s.matches(pattern);
+    }
+
+    public static String getLastChar(String s){
+        if (s != null && s.length() > 1 ){
+            return s.substring(s.length() -1);
+        }
+        return s;
+    }
 
 }

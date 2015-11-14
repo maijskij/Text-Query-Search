@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
+        final SearchView searchView =
                 (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
@@ -91,7 +91,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                updateResults(newText);
+                // Instructions: user only being able to enter numbers
+                if (!Utils.isNumber(Utils.getLastChar(newText))){
+                    searchView.setQuery(newText.substring(0, newText.length() - 1),false);
+                }else {
+                    updateResults(newText);
+                }
                 return true;
             }
         });

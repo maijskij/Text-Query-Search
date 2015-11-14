@@ -57,7 +57,7 @@ public class SearchArrayAdapter extends RecyclerView.Adapter<SearchArrayAdapter.
 
         int len =  mPrefix.length();
         // In case of non-alphabetic sign (e.g. "bloke's"), extend selection to one character (assuming we have only one character long non alphabetics symbols)
-        if ( !isAlphaBheticString(s.substring(0,len))  && s.length() >= len + 1){
+        if ( !Utils.isAlphaBheticString(s.substring(0,len))  && s.length() >= len + 1){
             len+=1;
         }
 
@@ -70,12 +70,4 @@ public class SearchArrayAdapter extends RecyclerView.Adapter<SearchArrayAdapter.
     public int getItemCount() {
         return mDataset.size();
     }
-
-    private static boolean isAlphaBheticString (String s){
-        String pattern= "^[a-z]*$";
-        return s.matches(pattern);
-    }
-
-
-
 }
