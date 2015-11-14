@@ -43,7 +43,7 @@ public class Utils {
     }
 
     public static String getLastChar(String s){
-        if (s != null && s.length() > 1 ){
+        if (s != null && s.length() > 0 ){
             return s.substring(s.length() -1);
         }
         return s;
