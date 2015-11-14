@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Search</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Type query..</string>
+
+    <string name="empty_list">Nothing found</string>
+</resources>
