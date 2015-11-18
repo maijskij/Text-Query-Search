@@ -23,9 +23,9 @@ public class Searcher {
         sDigits.put("g","4");
         sDigits.put("h","4");
         sDigits.put("i","4");
-        sDigits.put("l","5");
+        sDigits.put("j","5");
         sDigits.put("k","5");
-        sDigits.put("m","5");
+        sDigits.put("l","5");
         sDigits.put("m","6");
         sDigits.put("n","6");
         sDigits.put("o","6");
