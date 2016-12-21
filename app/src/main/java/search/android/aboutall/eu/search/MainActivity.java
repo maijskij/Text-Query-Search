@@ -26,11 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static Searcher sSearcher;
 
-    private RecyclerView mRecyclerView;
     private TextView mEmptyView;
 
     private SearchArrayAdapter mAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +36,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.listView);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.listView);
         mEmptyView = (TextView) findViewById(R.id.emptyView);
 
         // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter
         mAdapter = new SearchArrayAdapter(new ArrayList<String>());
-        mRecyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);
 
         if (sSearcher == null) {
             sSearcher = new Searcher();
@@ -92,9 +90,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 // Instructions: user only being able to enter numbers
-                if (!Utils.isNumber(Utils.getLastChar(newText))){
-                    searchView.setQuery(newText.substring(0, newText.length() - 1),false);
-                }else {
+                if (!Utils.isNumber(Utils.getLastChar(newText))) {
+                    searchView.setQuery(newText.substring(0, newText.length() - 1), false);
+                } else {
                     updateResults(newText);
                 }
                 return true;
@@ -105,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         searchView.setInputType(InputType.TYPE_CLASS_PHONE);
 
         // get my MenuItem with placeholder submenu
-        MenuItem searchMenuItem = menu.findItem( R.id.search );
+        MenuItem searchMenuItem = menu.findItem(R.id.search);
         // Expand the search menu item in order to show by default the query
         searchMenuItem.expandActionView();
 
@@ -113,25 +111,25 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void updateResults(String text){
+    private void updateResults(String text) {
         mAdapter.clear();
-        List<String> data  = sSearcher.lookup(text);
+        List<String> data = sSearcher.lookup(text);
         if (data != null) {
             mAdapter.addAll(data, text);
         }
-        int visibility = data!=null && data.size()>0 ? View.GONE:View.VISIBLE;
-        mEmptyView.setVisibility ( visibility );
+        int visibility = data != null && data.size() > 0 ? View.GONE : View.VISIBLE;
+        mEmptyView.setVisibility(visibility);
 
     }
 
-    private class DictionaryLoader extends AsyncTask<Void, Void, Void>{
+    private class DictionaryLoader extends AsyncTask<Void, Void, Void> {
 
         ProgressDialog mProgressDialog;
 
         @Override
         protected void onPreExecute() {
-            mProgressDialog = ProgressDialog.show(MainActivity.this, "Loading dictionary...",
-                    "Please wait", true);
+            mProgressDialog = ProgressDialog.show(MainActivity.this, getString(R.string.loading_dictionary),
+                    getString(R.string.please_wait), true);
 
         }
 
@@ -147,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            if (mProgressDialog != null){
+            if (mProgressDialog != null) {
                 mProgressDialog.dismiss();
             }
         }

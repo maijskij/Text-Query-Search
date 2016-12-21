@@ -10,9 +10,9 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Utils {
+class Utils {
 
-    public static Set<String> loadWords(Context context) throws IOException {
+    static Set<String> loadWords(Context context) throws IOException {
         final Resources resources = context.getResources();
         InputStream inputStream = resources.openRawResource(R.raw.wordlist);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -25,26 +25,31 @@ public class Utils {
                 result.add(line);
             }
         } finally {
-            reader.close();
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return result;
     }
-    public static boolean isAlphaBheticString (String s){
-        String pattern= "^[a-z]*$";
+
+    static boolean isAlphaBheticString(String s) {
+        String pattern = "^[a-z]*$";
         return s.matches(pattern);
     }
 
 
-    public static boolean isNumber(String s) {
+    static boolean isNumber(String s) {
 
-        String pattern= "^[0-9]*$";
+        String pattern = "^[0-9]*$";
         return s.matches(pattern);
     }
 
-    public static String getLastChar(String s){
-        if (s != null && s.length() > 0 ){
-            return s.substring(s.length() -1);
+    static String getLastChar(String s) {
+        if (s != null && s.length() > 0) {
+            return s.substring(s.length() - 1);
         }
         return s;
     }

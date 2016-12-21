@@ -4,4 +4,6 @@
     <string name="search_hint">Type query..</string>
 
     <string name="empty_list">Nothing found</string>
+    <string name="loading_dictionary">Loading dictionary...</string>
+    <string name="please_wait">Please wait</string>
 </resources>
