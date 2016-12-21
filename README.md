@@ -1,4 +1,4 @@
-# Searcher
+# Text Query Search
 
 **Simple android app, which implements text query search functionality.**
 
